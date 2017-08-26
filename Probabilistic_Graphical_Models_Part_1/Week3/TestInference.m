@@ -1,0 +1,1 @@
+load PA3Data.matload PA3Models.mat;load PA3SampleCases.mat;[charAcc, wordAcc] = ScoreModel(allWords, imageModel, pairwiseModel, tripletList)i = 0;
