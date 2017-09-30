@@ -58,11 +58,9 @@ function [nll, grad] = InstanceNegLogLikelihood(X, y, theta, modelParams)
     
     nll = 0;
     grad = zeros(size(theta));
+
     %%%
     % Your code here:
-    
-    % fill clique tree
-    load 'Part2Sample.mat'
     
     function feature = evaluateFeature(y, var, assignment)
       if (y(var) == assignment)
@@ -154,6 +152,4 @@ function [nll, grad] = InstanceNegLogLikelihood(X, y, theta, modelParams)
     
     nll = logZ - sum(weightedFeatureCounts) + regularizationCost;
     grad = modelFeatureCounts - featureCounts + regularizationGradient;
-
-    i = 0;
 end
