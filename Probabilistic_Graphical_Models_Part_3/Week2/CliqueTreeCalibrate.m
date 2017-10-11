@@ -136,6 +136,4 @@ function [P, logZ] = CliqueTreeCalibrate(P, isMax)
         end
     end
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-    i = 0; 
 end
