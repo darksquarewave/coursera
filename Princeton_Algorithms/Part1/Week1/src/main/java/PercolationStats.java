@@ -4,11 +4,11 @@ import edu.princeton.cs.algs4.Stopwatch;
 
 public class PercolationStats {
 
+    private static final double CONFIDENCE_COEFF = 1.96d;
+
     private final double[] x;
     private double mu;
     private double sigma;
-
-    private final static double confidenceCoefficient = 1.96d;
 
     public PercolationStats(int n, int trials) {
         if (n <= 0 || trials <= 0) {
@@ -26,14 +26,15 @@ public class PercolationStats {
                 percolation.open(row, col);
             }
 
-            x[i] = ((double)percolation.numberOfOpenSites()) / (n * n);
+            x[i] = ((double) percolation.numberOfOpenSites()) / (n * n);
         }
 
         mu = StdStats.mean(x);
 
         if (x.length == 1) {
             sigma = Double.NaN;
-        } else {
+        }
+        else {
             sigma = StdStats.stddev(x);
         }
     }
@@ -47,11 +48,11 @@ public class PercolationStats {
     }
 
     public double confidenceLo() {
-        return mu - (confidenceCoefficient * sigma)/Math.sqrt(x.length);
+        return mu - (CONFIDENCE_COEFF * sigma)/Math.sqrt(x.length);
     }
 
     public double confidenceHi() {
-        return mu + (confidenceCoefficient * sigma)/Math.sqrt(x.length);
+        return mu + (CONFIDENCE_COEFF * sigma)/Math.sqrt(x.length);
     }
 
     public static void main(String[] args) {

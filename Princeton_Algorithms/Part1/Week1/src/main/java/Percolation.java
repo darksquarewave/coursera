@@ -87,7 +87,8 @@ public class Percolation {
     public boolean isFull(int row, int col) {
         if (isOpen(row, col)) {
             return unionFind.connected(0, index(row, col));
-        } else {
+        }
+        else {
             return false;
         }
     }
@@ -96,7 +97,7 @@ public class Percolation {
         return openCount;
     }
 
-    public boolean percolates(){
+    public boolean percolates() {
         return percolateUnionFind.connected(0, n * n + 1);
     }
 

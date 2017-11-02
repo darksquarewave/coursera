@@ -79,7 +79,8 @@ public class PercolationTest {
     public boolean isFull(int row, int col) {
         if (isOpen(row, col)) {
             return uf.connected(0, index(row, col));
-        } else {
+        }
+        else {
             return false;
         }
     }

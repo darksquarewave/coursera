@@ -10,12 +10,12 @@ import edu.princeton.cs.algs4.Stopwatch;
 
 public class PercolationStatsTest {
 
+    private static final double CONFIDENCE_COEFF = 1.96d;
+
     private final int trials;
     private final int n;
 
     private double[] x;
-
-    private final static double confidenceCoefficient = 1.96d;
 
     public PercolationStatsTest(int n, int trials) {
         if (n <= 0 || trials <= 0) {
@@ -33,17 +33,18 @@ public class PercolationStatsTest {
     public double stddev() {
         if (x.length == 1) {
             return Double.NaN;
-        } else {
+        }
+        else {
             return StdStats.stddev(x);
         }
     }
 
     public double confidenceLo() {
-        return mean() - (confidenceCoefficient * stddev())/Math.sqrt(x.length);
+        return mean() - (CONFIDENCE_COEFF * stddev())/Math.sqrt(x.length);
     }
 
     public double confidenceHi() {
-        return mean() + (confidenceCoefficient * stddev())/Math.sqrt(x.length);
+        return mean() + (CONFIDENCE_COEFF * stddev())/Math.sqrt(x.length);
     }
 
     public void runExperiment(Class<? extends UnionFind> unionFindClass) {
