@@ -7,6 +7,10 @@ import java.util.NoSuchElementException;
 
 public class TreeBasedRandomizedQueue<Item> implements Iterable<Item> {
 
+    private int size = 0;
+
+    private Node root = null;
+
     private class Node {
 
         final Item value;
@@ -60,10 +64,6 @@ public class TreeBasedRandomizedQueue<Item> implements Iterable<Item> {
             return n.value;
         }
     }
-
-    private int size = 0;
-
-    private Node root = null;
 
     private int log2(int value) {
         return (int)(Math.log(value) / Math.log(2));
@@ -173,25 +173,5 @@ public class TreeBasedRandomizedQueue<Item> implements Iterable<Item> {
         int random = StdRandom.uniform(1, this.size + 1);
 
         return getNode(random).value;
-    }
-
-    public static void main(String[] args) {
-
-        LinkedListBasedRandomizedQueue<Integer> queue = new LinkedListBasedRandomizedQueue<>();
-
-        for (int i = 0; i < 2 * 1024000; i++) {
-            queue.enqueue(i);
-        }
-
-        int i = 0;
-        long t1 = System.nanoTime();
-        for (Integer integer : queue) {
-            i = integer;
-        }
-        long t2 = System.nanoTime();
-
-        double diff = (t2 - t1) / 1e9;
-
-        System.out.println("diff = " + diff + " secs");
     }
 }

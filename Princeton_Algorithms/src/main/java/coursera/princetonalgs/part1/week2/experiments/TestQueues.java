@@ -6,13 +6,16 @@ public class TestQueues {
 
         long t1 = System.nanoTime();
 
-        for (Integer i : queue);
+        int sum = 0;
+        for (Integer i : queue) {
+            sum += i;
+        }
 
         long t2 = System.nanoTime();
 
         double diff = (t2 - t1) / 1e9;
 
-        System.out.println("total time = " + diff + " secs");
+        System.out.println("total time = " + diff + " secs, total sum = " + sum);
     }
 
     private static LinkedListBasedRandomizedQueue<Integer> buildLinkedListQueue(int count) {

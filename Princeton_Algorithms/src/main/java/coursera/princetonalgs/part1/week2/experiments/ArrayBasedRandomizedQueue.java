@@ -7,6 +7,10 @@ import java.util.NoSuchElementException;
 
 public class ArrayBasedRandomizedQueue<Item> implements Iterable<Item> {
 
+    private int size = 0;
+
+    private Item[] queue;
+
     private class RandomizedIterator implements Iterator<Item> {
 
         private final int[] randomNumbers;
@@ -45,10 +49,6 @@ public class ArrayBasedRandomizedQueue<Item> implements Iterable<Item> {
             return ArrayBasedRandomizedQueue.this.queue[index];
         }
     }
-
-    private int size = 0;
-
-    private Item[] queue;
 
     private void resize(int capacity) {
         Item[] copy = (Item[]) new Object[capacity];

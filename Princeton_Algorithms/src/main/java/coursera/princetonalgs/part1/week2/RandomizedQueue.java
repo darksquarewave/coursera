@@ -5,6 +5,10 @@ import java.util.NoSuchElementException;
 
 public class RandomizedQueue<Item> implements Iterable<Item> {
 
+    private int size = 0;
+
+    private Item[] queue;
+
     private class RandomizedIterator implements Iterator<Item> {
 
         private final int[] randomNumbers;
@@ -44,9 +48,9 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         }
     }
 
-    private int size = 0;
-
-    private Item[] queue;
+    public RandomizedQueue() {
+        queue = (Item[]) new Object[1];
+    }
 
     private void resize(int capacity) {
         Item[] copy = (Item[]) new Object[capacity];
@@ -54,10 +58,6 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
             copy[i] = queue[i];
         }
         queue = copy;
-    }
-
-    public RandomizedQueue() {
-        queue = (Item[]) new Object[1];
     }
 
     @Override
@@ -112,32 +112,5 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         }
         int random = StdRandom.uniform(this.size);
         return queue[random];
-    }
-
-    public static void main(String[] args) {
-        RandomizedQueue<String> rq = new RandomizedQueue<>();
-        rq.enqueue("A");
-        rq.enqueue("B");
-        rq.enqueue("C");
-        for (String s : rq) {
-            System.out.println(s);
-        }
-        System.out.println("===");
-        for (String s : rq) {
-            System.out.println(s);
-        }
-        System.out.println("===");
-        for (String s : rq) {
-            System.out.println(s);
-        }
-        System.out.println("===");
-        for (String s : rq) {
-            System.out.println(s);
-        }
-        System.out.println("===");
-        for (String s : rq) {
-            System.out.println(s);
-        }
-        System.out.println("===");
     }
 }

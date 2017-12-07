@@ -107,7 +107,8 @@ public class Deque<Item> implements Iterable<Item> {
         if (this.size == 0) {
             this.start = null;
             this.end = null;
-        } else {
+        }
+        else {
             this.start.prev = null;
         }
 
@@ -127,7 +128,8 @@ public class Deque<Item> implements Iterable<Item> {
         if (this.size == 0) {
             this.start = null;
             this.end = null;
-        } else {
+        }
+        else {
             this.end.next = null;
         }
 
@@ -135,74 +137,6 @@ public class Deque<Item> implements Iterable<Item> {
     }
 
     public Iterator<Item> iterator() {
-       return new DequeIterator();
-    }
-
-    public static void main(String[] args) {
-
-        Deque<Integer> deque = new Deque<>();
-        deque.addFirst(1);
-        deque.addFirst(2);
-        deque.addLast(3);
-        deque.addLast(4);
-        deque.addFirst(5);
-        deque.removeLast(); //==> 4
-        for (Integer integer : deque) {
-            System.out.println("integer = " + integer);
-
-        }
-        System.out.println("=====");
-
-        deque = new Deque<>();
-        deque.addLast(1);
-        deque.addFirst(2);
-        deque.addFirst(3);
-        deque.removeLast(); //==> 1
-        for (Integer integer : deque) {
-            System.out.println("integer = " + integer);
-        }
-
-        System.out.println("=====");
-
-        deque.addFirst(1);
-        deque.addLast(2);
-        deque.addLast(3);
-        deque.removeLast(); //==> 3
-        for (Integer integer : deque) {
-            System.out.println("integer = " + integer);
-        }
-
-        System.out.println("=====");
-
-        deque.addFirst(1);
-        System.out.println(deque.removeFirst()); //==> 1
-        deque.addLast(3);
-        deque.addFirst(4);
-        deque.addLast(5);
-        deque.addFirst(6);
-        deque.removeLast(); //==> 5
-        for (Integer integer : deque) {
-            System.out.println("integer = " + integer);
-        }
-
-        System.out.println("=====");
-
-        deque = new Deque<Integer>();
-        deque.addLast(1);
-        deque.addLast(2);
-        deque.addFirst(3);
-        deque.addLast(4);
-        deque.addFirst(5);
-        deque.removeFirst(); //==> 5
-        deque.removeFirst(); //==> 3
-        deque.addLast(8);
-        deque.addFirst(9);
-        deque.removeFirst(); //==> 9
-        deque.removeLast();  //==> 8
-        for (Integer integer : deque) {
-            System.out.println("integer = " + integer);
-        }
-
-        System.out.println("=====");
+        return new DequeIterator();
     }
 }
