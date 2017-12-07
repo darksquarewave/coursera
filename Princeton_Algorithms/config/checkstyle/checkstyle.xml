@@ -49,15 +49,15 @@
          5.  *  [optional lines]
          6.  ******************************************************************************/
     -->
-    <module name="RegexpMultiline">
-        <property name="format"
-                  value="\A\/\*{78}\n \*  Compilation:.*\n( \*.*\n)* \*  Execution:.*\n( \*.*\n)* \*{78}/\n"/>
-        <property name="fileExtensions" value="java"/>
-        <property name="minimum" value="1"/>
-        <property name="maximum" value="1"/>
-        <property name="message" value="Incorrect algs4.jar header format."/>
-        <property name="ignoreCase" value="false"/>
-    </module>
+    <!--<module name="RegexpMultiline">-->
+        <!--<property name="format"-->
+                  <!--value="\A\/\*{78}\n \*  Compilation:.*\n( \*.*\n)* \*  Execution:.*\n( \*.*\n)* \*{78}/\n"/>-->
+        <!--<property name="fileExtensions" value="java"/>-->
+        <!--<property name="minimum" value="1"/>-->
+        <!--<property name="maximum" value="1"/>-->
+        <!--<property name="message" value="Incorrect algs4.jar header format."/>-->
+        <!--<property name="ignoreCase" value="false"/>-->
+    <!--</module>-->
 
     <module name="RegexpSingleline">
         <!-- <property name="fileExtensions" value ="java, txt, toy"/> -->

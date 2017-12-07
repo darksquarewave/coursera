@@ -1,0 +1,119 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'findbugs'
+apply plugin: 'pmd'
+apply plugin: 'checkstyle'
+
+sourceCompatibility = 1.8
+version = '1.0'
+jar {
+  manifest {
+    attributes 'Implementation-Title': 'Gradle Quickstart',
+        'Implementation-Version': version
+  }
+}
+
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+}
+
+repositories {
+  mavenCentral()
+  flatDir {
+    dirs 'libs'
+  }
+}
+
+dependencies {
+  testCompile group: 'junit', name: 'junit', version: '4.+'
+  compile fileTree(dir: 'lib', include: '*.jar')
+}
+
+test {
+}
+
+uploadArchives {
+  repositories {
+    flatDir {
+      dirs 'repos'
+    }
+  }
+}
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '4.3'
+}
+
+tasks.withType(FindBugs) {
+  reports {
+    xml.enabled = false
+    html.enabled = true
+  }
+}
+
+tasks.withType(Checkstyle) {
+  reports {
+    xml.enabled false
+    html.enabled true
+  }
+}
+
+findbugs {
+  includeFilter = file("config/findbugs/findbugs.xml")
+}
+
+pmd {
+  ruleSetFiles = files("config/pmd/pmd.xml")
+}
+
+checkstyle {
+  configFile = file('config/checkstyle/checkstyle.xml')
+}
+
+tasks.withType(Checkstyle) {
+  exclude '**/QuizQuestion3.java'
+  exclude '**/PercolationStatsTest.java'
+  exclude '**/PercolationTest.java'
+  exclude '**/alg/*.java'
+}
+
+def getZippedFiles(path) {
+  def target = []
+  new File(path).eachFile {
+    if (it.isFile()) {
+      target << it
+    }
+  }
+  [target]
+}
+
+sourceSets {
+  main {
+    java {
+      srcDir 'src/main/java/coursera/princetonalgs/part1/week1'
+      srcDir 'src/main/java/coursera/princetonalgs/part1/week2'
+    }
+  }
+}
+
+task createSubmissionPart1Week1(type: Zip) {
+  from {
+    getZippedFiles('src/main/java/coursera/princetonalgs/part1/week1')
+  }
+  destinationDir file('submissions/part1/week1')
+  version ''
+  baseName 'percolation'
+  appendix ''
+}
+
+task createSubmissionPart1Week2(type: Zip) {
+  from {
+    getZippedFiles('src/main/java/coursera/princetonalgs/part1/week2')
+  }
+  destinationDir file('submissions/part1/week2')
+  version ''
+  baseName 'queues'
+  appendix ''
+}

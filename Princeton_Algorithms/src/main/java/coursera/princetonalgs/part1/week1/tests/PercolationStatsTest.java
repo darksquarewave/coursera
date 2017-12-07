@@ -1,3 +1,5 @@
+package tests;
+
 import alg.QuickUnionFindLazy;
 import alg.QuickUnionFindWeighted;
 import alg.QuickUnionFindWeightedPathCompression;

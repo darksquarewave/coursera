@@ -7,7 +7,7 @@ public class PercolationStats {
     private static final double CONFIDENCE_COEFF = 1.96d;
 
     private final double[] x;
-    private double mu;
+    private final double mu;
     private double sigma;
 
     public PercolationStats(int n, int trials) {

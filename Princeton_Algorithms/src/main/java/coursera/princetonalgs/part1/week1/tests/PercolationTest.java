@@ -1,3 +1,5 @@
+package tests;
+
 import alg.QuickUnionFindWeightedPathCompression;
 import alg.UnionFind;
 import alg.UnionFindFactory;
@@ -107,7 +109,7 @@ public class PercolationTest {
         percolation.open(1, 2);
         percolation.open(2, 1);
         percolation.open(3, 2);
-        System.out.printf(Boolean.toString(percolation.percolates()));
+        System.out.println(Boolean.toString(percolation.percolates()));
     }
 
 }
