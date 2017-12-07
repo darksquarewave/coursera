@@ -99,7 +99,7 @@ sourceSets {
   }
 }
 
-task createSubmissionPart1Week1(type: Zip) {
+task submissionWeek1(type: Zip) {
   from {
     getZippedFiles('src/main/java/coursera/princetonalgs/part1/week1')
   }
@@ -109,7 +109,7 @@ task createSubmissionPart1Week1(type: Zip) {
   appendix ''
 }
 
-task createSubmissionPart1Week2(type: Zip) {
+task submissionWeek2(type: Zip) {
   from {
     getZippedFiles('src/main/java/coursera/princetonalgs/part1/week2')
   }
@@ -118,3 +118,6 @@ task createSubmissionPart1Week2(type: Zip) {
   baseName 'queues'
   appendix ''
 }
+
+build.dependsOn submissionWeek1
+build.dependsOn submissionWeek2
