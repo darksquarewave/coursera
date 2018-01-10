@@ -80,10 +80,10 @@ tasks.withType(Checkstyle) {
   exclude '**/experiments/*.java'
 }
 
-def getZippedFiles(path) {
+def getZippedFiles(path, ignore = null) {
   def target = []
   new File(path).eachFile {
-    if (it.isFile()) {
+    if (it.isFile() && (!ignore || (ignore && !(it.name in ignore)))) {
       target << it
     }
   }
@@ -119,5 +119,17 @@ task submissionWeek2(type: Zip) {
   appendix ''
 }
 
+task submissionWeek3(type: Zip) {
+  from {
+    getZippedFiles('src/main/java/coursera/princetonalgs/part1/week3', [
+        'LineSegment.java', 'BruteForceClient.java', 'FastClient.java'])
+  }
+  destinationDir file('submissions/part1/week3')
+  version ''
+  baseName 'collinear'
+  appendix ''
+}
+
 build.dependsOn submissionWeek1
 build.dependsOn submissionWeek2
+build.dependsOn submissionWeek3
