@@ -29,7 +29,7 @@ public class FastCollinearPoints {
             Point end = null;
 
             int count = 1;
-            boolean invalidOrder = false;
+            boolean validOrder = true;
             boolean slopeInitialized = false;
 
             for (Point curr : aux) {
@@ -41,7 +41,7 @@ public class FastCollinearPoints {
 
                 if (!slopeInitialized) {
                     slope = currSlope;
-                    invalidOrder = curr.compareTo(point) > 0;
+                    validOrder = curr.compareTo(point) < 0;
                     slopeInitialized = true;
 
                     continue;
@@ -52,10 +52,10 @@ public class FastCollinearPoints {
                         addToLineSegments(point, end);
                     }
 
-                    invalidOrder = curr.compareTo(point) > 0;
+                    validOrder = curr.compareTo(point) < 0;
                     count = 1;
                 }
-                else if (!invalidOrder) {
+                else if (validOrder) {
                     count++;
                 }
 
