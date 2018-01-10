@@ -26,16 +26,13 @@ public class FastCollinearPoints {
 
             double slope = 0d;
 
-            Point curr;
             Point end = null;
 
             int count = 1;
             boolean invalidOrder = false;
             boolean slopeInitialized = false;
 
-            for (Point anAux : aux) {
-                curr = anAux;
-
+            for (Point curr : aux) {
                 if (curr == point) {
                     continue;
                 }
