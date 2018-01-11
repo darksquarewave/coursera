@@ -103,13 +103,6 @@ public class Point implements Comparable<Point> {
             @Override
             public int compare(Point o1, Point o2) {
                 return Double.compare(slopeTo(o1), slopeTo(o2));
-//                int slopeResult = Double.compare(slopeTo(o1), slopeTo(o2));
-//                if (slopeResult == 0) {
-//                    return o2.compareTo(o1);
-//                }
-//                else {
-//                    return slopeResult;
-//                }
             }
         };
     }
@@ -132,11 +125,5 @@ public class Point implements Comparable<Point> {
      */
     public static void main(String[] args) {
         /* YOUR CODE HERE */
-
-        Point p                         = new Point(72, 199);
-        Point q                         = new Point(220, 347);
-        Point r                         = new Point(99, 226);
-
-        p.slopeOrder().compare(q, r);
     }
 }
