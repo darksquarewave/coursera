@@ -1,9 +1,6 @@
-package coursera.princetonalgs.part1.week3;
-
 import edu.princeton.cs.algs4.StdDraw;
 
 import java.util.Comparator;
-import java.util.Objects;
 
 public class Point implements Comparable<Point> {
 
@@ -54,7 +51,6 @@ public class Point implements Comparable<Point> {
      */
     public double slopeTo(Point that) {
         /* YOUR CODE HERE */
-
         int dy = that.y - this.y;
         int dx = that.x - this.x;
 
@@ -67,7 +63,7 @@ public class Point implements Comparable<Point> {
             }
         }
         else {
-            return (double) dy / dx;
+            return (double) dy / dx + 0.0d;
         }
     }
 
@@ -85,29 +81,13 @@ public class Point implements Comparable<Point> {
      */
     public int compareTo(Point that) {
         /* YOUR CODE HERE */
-
-        int result = Integer.compare(that.y, this.y);
+        int result = Integer.compare(this.y, that.y);
         if (result == 0) {
-            return Integer.compare(that.x, this.x);
+            return Integer.compare(this.x, that.x);
         }
         else {
             return result;
         }
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        Point point = (Point) obj;
-        return x == point.x &&
-                y == point.y;
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(x, y);
     }
 
     /**
@@ -122,13 +102,14 @@ public class Point implements Comparable<Point> {
         return new Comparator<Point>() {
             @Override
             public int compare(Point o1, Point o2) {
-                int slopeResult = Double.compare(slopeTo(o1), slopeTo(o2));
-                if (slopeResult == 0) {
-                    return o2.compareTo(o1);
-                }
-                else {
-                    return slopeResult;
-                }
+                return Double.compare(slopeTo(o1), slopeTo(o2));
+//                int slopeResult = Double.compare(slopeTo(o1), slopeTo(o2));
+//                if (slopeResult == 0) {
+//                    return o2.compareTo(o1);
+//                }
+//                else {
+//                    return slopeResult;
+//                }
             }
         };
     }
@@ -151,5 +132,11 @@ public class Point implements Comparable<Point> {
      */
     public static void main(String[] args) {
         /* YOUR CODE HERE */
+
+        Point p                         = new Point(72, 199);
+        Point q                         = new Point(220, 347);
+        Point r                         = new Point(99, 226);
+
+        p.slopeOrder().compare(q, r);
     }
 }

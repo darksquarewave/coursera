@@ -95,6 +95,7 @@ sourceSets {
     java {
       srcDir 'src/main/java/coursera/princetonalgs/part1/week1'
       srcDir 'src/main/java/coursera/princetonalgs/part1/week2'
+      srcDir 'src/main/java/coursera/princetonalgs/part1/week3'
     }
   }
 }

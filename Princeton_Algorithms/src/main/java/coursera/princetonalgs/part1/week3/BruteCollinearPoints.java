@@ -1,5 +1,3 @@
-package coursera.princetonalgs.part1.week3;
-
 import java.util.Arrays;
 
 public class BruteCollinearPoints {
@@ -8,6 +6,10 @@ public class BruteCollinearPoints {
     private int lineSegmentsSize = 0;
 
     public BruteCollinearPoints(Point[] points) {
+        if (points == null) {
+            throw new IllegalArgumentException();
+        }
+
         for (Point point : points) {
             if (point == null) {
                 throw new IllegalArgumentException();
@@ -28,6 +30,9 @@ public class BruteCollinearPoints {
                 array[1] = pointsCopy[j];
                 if (array[1].compareTo(array[0]) < 0) {
                     break;
+                }
+                else if (array[1].compareTo(array[0]) == 0) {
+                    throw new IllegalArgumentException();
                 }
 
                 for (int k = j + 1; k < pointsCopy.length; k++) {

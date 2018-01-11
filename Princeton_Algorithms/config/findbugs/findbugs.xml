@@ -24,8 +24,7 @@
                           DM_CONVERT_CASE,
                           SF_SWITCH_NO_DEFAULT,
                           NM_METHOD_NAMING_CONVENTION,
-                          NM_CLASS_NAMING_CONVENTION,
-                          EQ_COMPARETO_USE_OBJECT_EQUALS" />
+                          NM_CLASS_NAMING_CONVENTION" />
     </Match>
 
     <!-- from fb-contrib-7.0.2.jar plugin -->

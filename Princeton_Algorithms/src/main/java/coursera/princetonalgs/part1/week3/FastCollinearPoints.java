@@ -1,5 +1,3 @@
-package coursera.princetonalgs.part1.week3;
-
 import java.util.Arrays;
 
 public class FastCollinearPoints {
@@ -10,6 +8,10 @@ public class FastCollinearPoints {
     private int lineSegmentsSize = 0;
 
     public FastCollinearPoints(Point[] points) {
+        if (points == null) {
+            throw new IllegalArgumentException();
+        }
+
         for (Point point : points) {
             if (point == null) {
                 throw new IllegalArgumentException();
@@ -18,53 +20,47 @@ public class FastCollinearPoints {
 
         lineSegments = new LineSegment[1];
 
-        Point[] aux = new Point[points.length];
-        System.arraycopy(points, 0, aux, 0, points.length);
+        Point[] orderedPoints = new Point[points.length];
+        System.arraycopy(points, 0, orderedPoints, 0, points.length);
+
+        Point segmentStart = null;
+        Point segmentEnd = null;
+        int segmentSize;
 
         for (Point point : points) {
-            Arrays.sort(aux, point.slopeOrder());
+            Arrays.sort(orderedPoints, point.slopeOrder());
 
-            double slope = 0d;
+            segmentSize = 0;
 
-            Point end = null;
+            for (int i = 1; i < orderedPoints.length; i++) {
+                Point curr = orderedPoints[i];
 
-            int count = 1;
-            boolean validOrder = true;
-            boolean slopeInitialized = false;
-
-            for (Point curr : aux) {
-                if (curr == point) {
-                    continue;
+                if (curr.compareTo(point) == 0 && curr != point) {
+                    throw new IllegalArgumentException();
                 }
 
-                double currSlope = point.slopeTo(curr);
-
-                if (!slopeInitialized) {
-                    slope = currSlope;
-                    validOrder = curr.compareTo(point) < 0;
-                    slopeInitialized = true;
-
-                    continue;
-                }
-
-                if (slope != currSlope) {
-                    if (count >= MIN_SEGMENT_SIZE) {
-                        addToLineSegments(point, end);
+                double slope = curr.slopeTo(point);
+                boolean isSameSegment = segmentSize > 0 && segmentStart.slopeTo(curr) == slope;
+                if (isSameSegment) {
+                    if (curr.compareTo(segmentStart) < 0) {
+                        segmentStart = curr;
+                    }
+                    else if (curr.compareTo(segmentEnd) > 0) {
+                        segmentEnd = curr;
                     }
 
-                    validOrder = curr.compareTo(point) < 0;
-                    count = 1;
-                }
-                else if (validOrder) {
-                    count++;
+                    segmentSize++;
                 }
 
-                slope = currSlope;
-                end = curr;
-            }
+                if (i == orderedPoints.length - 1 || !isSameSegment) {
+                    if (segmentSize >= MIN_SEGMENT_SIZE && point.compareTo(segmentStart) < 0) {
+                        addToLineSegments(point, segmentEnd);
+                    }
 
-            if (count >= MIN_SEGMENT_SIZE) {
-                addToLineSegments(point, end);
+                    segmentStart = curr;
+                    segmentEnd = curr;
+                    segmentSize = 1;
+                }
             }
         }
     }
