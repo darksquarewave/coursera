@@ -35,7 +35,7 @@ public class FastCollinearPoints {
             for (int i = 1; i < orderedPoints.length; i++) {
                 Point curr = orderedPoints[i];
 
-                if (curr.compareTo(point) == 0 && curr != point) {
+                if (curr != point && curr.compareTo(point) == 0) {
                     throw new IllegalArgumentException();
                 }
 

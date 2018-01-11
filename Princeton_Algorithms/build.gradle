@@ -83,7 +83,7 @@ tasks.withType(Checkstyle) {
 def getZippedFiles(path, ignore = null) {
   def target = []
   new File(path).eachFile {
-    if (it.isFile() && (!ignore || (ignore && !(it.name in ignore)))) {
+    if (it.isFile() && (!ignore || !(it.name in ignore))) {
       target << it
     }
   }
