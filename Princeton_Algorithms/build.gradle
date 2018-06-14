@@ -31,9 +31,6 @@ dependencies {
   compile fileTree(dir: 'lib', include: '*.jar')
 }
 
-test {
-}
-
 uploadArchives {
   repositories {
     flatDir {
@@ -62,10 +59,12 @@ tasks.withType(Checkstyle) {
 
 findbugs {
   includeFilter = file("config/findbugs/findbugs.xml")
+  ignoreFailures = true
 }
 
 pmd {
   ruleSetFiles = files("config/pmd/pmd.xml")
+  ignoreFailures = true
 }
 
 checkstyle {
@@ -96,6 +95,7 @@ sourceSets {
       srcDir 'src/main/java/coursera/princetonalgs/part1/week1'
       srcDir 'src/main/java/coursera/princetonalgs/part1/week2'
       srcDir 'src/main/java/coursera/princetonalgs/part1/week3'
+      srcDir 'src/main/java/coursera/princetonalgs/part1/week4'
     }
   }
 }
@@ -131,6 +131,17 @@ task submissionWeek3(type: Zip) {
   appendix ''
 }
 
+task submissionWeek4(type: Zip) {
+  from {
+    getZippedFiles('src/main/java/coursera/princetonalgs/part1/week4', [])
+  }
+  destinationDir file('submissions/part1/week4')
+  version ''
+  baseName 'puzzle'
+  appendix ''
+}
+
 build.dependsOn submissionWeek1
 build.dependsOn submissionWeek2
 build.dependsOn submissionWeek3
+build.dependsOn submissionWeek4
