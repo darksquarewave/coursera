@@ -70,20 +70,11 @@ public class Solver {
     // min number of moves to solve initial board; -1 if unsolvable
     public int moves() {
         if (isSolvable()) {
-            return moves(result);
+            return result.moves;
         }
         else {
             return -1;
         }
-    }
-
-    private static int moves(GameTreeNode node) {
-        int moves = 0;
-        while (node != null) {
-            moves++;
-            node = node.parent;
-        }
-        return moves - 1;
     }
 
     // sequence of boards in a shortest solution; null if unsolvable
@@ -105,17 +96,20 @@ public class Solver {
         private final Board board;
         private final GameTreeNode parent;
         private final int manhattan;
+        private final int moves;
 
         GameTreeNode(Board b) {
             board = b;
             parent = null;
             manhattan = b.manhattan();
+            moves = 0;
         }
 
         GameTreeNode(Board b, GameTreeNode p) {
             board = b;
             parent = p;
-            manhattan = board.manhattan() + moves(p) + 1;
+            moves = p.moves + 1;
+            manhattan = board.manhattan() + moves;
         }
 
         @Override
