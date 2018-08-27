@@ -96,6 +96,7 @@ sourceSets {
       srcDir 'src/main/java/coursera/princetonalgs/part1/week2'
       srcDir 'src/main/java/coursera/princetonalgs/part1/week3'
       srcDir 'src/main/java/coursera/princetonalgs/part1/week4'
+      srcDir 'src/main/java/coursera/princetonalgs/part1/week5'
     }
   }
 }
@@ -141,7 +142,20 @@ task submissionWeek4(type: Zip) {
   appendix ''
 }
 
+task submissionWeek5(type: Zip) {
+  from {
+    getZippedFiles('src/main/java/coursera/princetonalgs/part1/week5', [
+        'KdTreeVisualizer.java', 'RangeSearchVisualizer.java', 'NearestNeighborVisualizer.java'
+    ])
+  }
+  destinationDir file('submissions/part1/week5')
+  version ''
+  baseName 'kdtree'
+  appendix ''
+}
+
 build.dependsOn submissionWeek1
 build.dependsOn submissionWeek2
 build.dependsOn submissionWeek3
 build.dependsOn submissionWeek4
+build.dependsOn submissionWeek5
